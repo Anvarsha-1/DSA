@@ -1,95 +1,67 @@
 class Node {
     constructor(value) {
-        this.value = value;
-        this.next = null;
-        this.prev = null;
+        this.value = value
+        this.prev = null
+        this.next = null
     }
 }
 
-
-class DoubleLinkedList {
+class LinkedList {
     constructor() {
         this.head = null;
         this.tail = null;
     }
-    InsertAtLast(value) {
-        let newNode = new Node(value)
-        if (this.head === null) {
-            this.head = this.tail = newNode
-            return
-        } else {
-            this.tail.next = newNode;
-            newNode.prev = this.tail
-
-            this.tail = newNode
-        }
-    }
 
     InsertAtFirst(value) {
-        let newNode = new Node(value)
+        let node = new Node(value);
         if (this.head === null) {
-            this.head = this.tail = newNode
+            this.head = this.tail = node;
             return
-        } else {
-            newNode.next = this.head
-            this.head.prev = newNode
+        }
+        else {
+            node.next = this.head;
+            this.head.prev = node
 
-            this.head = newNode
+            this.head = node
         }
     }
-    delete(value) {
-        let cur = this.head
+    findMiddleElem() {
+        if (this.head === null) return null
+        let slow = this.head;
+        let fast = this.head;
 
-        while (cur) {
-            if (cur.value === value) {
-                //delete head 
-                if (cur === this.head) {
-                    this.head = cur.next
-                    if (this.head) this.head.prev = null
-                    return
-                }
-                //delete tail
-                if (cur === this.tail) {
-                    this.tail = cur.prev
-                    this.tail.next = null
-                    return
-                } else {
-                    cur.prev.next = cur.next
-                    cur.next.prev = cur.prev
-                    return
-                }
-
-            }
-            cur = cur.next
+        while (fast && fast.next) {
+            let slow = slow.next
+            let fast = fast.next.next
         }
+        return slow.value
     }
+
     print() {
-        if (this.head === null) {
-            console.log("Head not found")
-            return
-        }
         let cur = this.head
         let result = []
         while (cur) {
             result.push(cur.value)
             cur = cur.next
-        }
-        console.log(result.join("->"))
+        } console.log(result.join("->"))
     }
-
 }
 
-let node = new DoubleLinkedList()
 
-node.InsertAtFirst(10)
-node.InsertAtFirst(20)
-node.InsertAtFirst(30)
-node.InsertAtFirst(40)
-node.InsertAtFirst(50)
-node.delete(11)
+let list = new LinkedList()
+
+list.InsertAtFirst(10)
+list.InsertAtFirst(20)
+list.InsertAtFirst(30)
+list.InsertAtFirst(40)
+list.InsertAtFirst(50)
+list.InsertAtFirst(60)
+list.InsertAtFirst(70)
+list.InsertAtFirst(80)
 
 
+list.findMiddleElem()
 
-node.print()
+list.print()
 
 
