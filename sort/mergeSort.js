@@ -1,6 +1,5 @@
 let arr = [8,6,3,1,5,4,2,9,7]
 
-
 function mergeSort(arr){
    if(arr.length<=1) return arr;
 

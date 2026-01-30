@@ -5,41 +5,32 @@ class Node{
     }
 }
 
-class StackLL{
+class stackLL{
     constructor(){
-        this.top = null
+        this.head = null
     }
 
     push(x){
-        let node = new Node(x)
-        node.next =  this.top;
-        this.top =  node
-        
+        let node  = new Node(x)
+        if(!this.head){
+            this.head = node
+            return
+        }
+        node.next = this.head
+        this.head = node
     }
-
     pop(){
-        if(!this.top) return null;
-        let v  = this.top.value
-        this.top =  this.top.next;
-        return v
-    }
-
-    peek(){
-        return this.top ? this.top.value : null
-    }
-
-    isEmpty(){
-        return this.top===null
+        if(!this.head) return null
+        let h = this.head.value
+        this.head = this.head.next
+        return h
     }
 }
 
-let stack = new StackLL()
-
+let stack = new stackLL()
 stack.push(10)
 stack.push(20)
 stack.push(30)
 stack.push(40)
-
-
-
-console.log(stack.peek())
+stack.pop()
+console.log(stack)

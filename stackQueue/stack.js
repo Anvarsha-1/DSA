@@ -16,6 +16,11 @@ class stack{
     isEmpty(){
         return this.data.length===0
     }
+
+    display(){
+        if(this.data.length===0) return null
+        return console.log("Stack:", this.data)
+    }
 }
 
 let st = new stack()
@@ -24,7 +29,6 @@ st.push(10)
 st.push(20)
 st.push(30)
 
-st.pop()
 
-console.log(st.isEmpty())
+st.display()
 

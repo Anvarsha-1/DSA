@@ -1,5 +1,4 @@
 
-
 let arr = [7, 3, 2, 1, 8, 9, 4]
 
 function selectionSort(arr) {
