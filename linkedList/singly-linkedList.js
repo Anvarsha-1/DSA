@@ -249,6 +249,21 @@ class singlyLinkedList {
 
         return list1
     }
+    removeDuplicate(){
+        if(!this.head) return null
+        let cur = this.head
+        while(cur!==null){
+          let runner = cur
+          while(runner.next){
+              if (cur.value === runner.next.value){
+                runner.next = runner.next.next
+              }else{
+                runner = runner.next
+              }
+          }
+         cur =  cur.next
+        }
+    }
     print() {
         let cur = this.head
         let ans = ""
@@ -267,23 +282,30 @@ let list2 = new singlyLinkedList()
 
 list1.append(10)
 list1.append(20)
+list1.append(30)
+list1.append(40)
+list1.append(50)
+list1.append(60)
 
-
+console.log("middle",list1.middle())
+console.log("middle", list1.middle())
 
 list1.print()
 
 list2.append(1)
 list2.append(2)
-list2.append(3)
-list2.append(4)
+list2.append(2)
+list2.append(2)
 list2.append(5)
 
+// list2.removeDuplicate()
 
-list2.print()
 
-list1.mixTwoList(list1, list2)
+// list2.print()
 
-list1.print()
+
+
+
 
 
 
