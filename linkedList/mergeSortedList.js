@@ -64,7 +64,7 @@ function mergeTwoSortedList(list1,list2){
       a.prev = tail
     }if(b){
         tail.next = b;
-        b.prev = tail
+        b.prev = tail;
     }
     let mergeSort = new DoubleLinkedList()
 

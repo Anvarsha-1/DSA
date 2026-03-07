@@ -21,6 +21,7 @@ class BinaryTree{
           this.root = node
           return
       }
+      
       const queue = [this.root]
 
       while(queue.length>0){
