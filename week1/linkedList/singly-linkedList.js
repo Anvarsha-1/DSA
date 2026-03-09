@@ -11,7 +11,7 @@ class singlyLinkedList {
         this.tail = null;
         this.size = 0
     }
-
+ //Q1. insert a element at last like .push()
     append(value) {
         let node = new Node(value)
         this.size++
@@ -23,6 +23,7 @@ class singlyLinkedList {
         this.tail.next = node
         this.tail = node
     }
+    //Q2. find middle element of linked list
     middle() {
         if (!this.head) return
         let fast = this.head
@@ -33,7 +34,7 @@ class singlyLinkedList {
         }
         return slow.value
     }
-
+    //Q3. Reverse a linked list
     reverse() {
         if (!this.head) return this
         let prev = null
@@ -48,6 +49,7 @@ class singlyLinkedList {
         this.head = prev
         return this
     }
+    //Q4. Insert a value at given position function(position of the value to be inserted ,value)
     insertAtPosition(pos, value) {
         if (!this.head) return
         let node = new Node(value)
@@ -66,7 +68,9 @@ class singlyLinkedList {
         node.next = cur.next
         cur.next = node
 
-    } deleteTail() {
+    }
+    //Q5. Delete a tail in linkedList
+    deleteTail(){
         if (!this.head) return
         this.size -= 1
         let cur = this.head
@@ -80,7 +84,8 @@ class singlyLinkedList {
         cur.next = null
         this.tail = cur
     }
-    findtheNthNode(n) {
+    //Q6. find the nth=(index of the element) element 
+    findNthNode(n) {
         if (!this.head) return null
         if (n < 0) return null
         let cur = this.head
@@ -92,6 +97,7 @@ class singlyLinkedList {
 
         return cur || null
     }
+    //Q7. delete a value 
     deleteValue(val) {
         if (!this.head) return false;
         if (!val) return console.log("pass value")
@@ -110,13 +116,17 @@ class singlyLinkedList {
         cur.next = cur.next.next
         return true
 
-    } checkList() {
+    } 
+    //Q8. check the linked list is empty
+    checkList() {
         if (!this.head) {
             return console.log("list is empty")
         } else {
             return console.log("not empty")
         }
-    } listCount() {
+    }
+    //Q9. Return the size of the linked List
+     listCount() {
         let cur = this.head
         let count = 0
         while (cur !== null) {
@@ -125,6 +135,7 @@ class singlyLinkedList {
         }
         return count
     }
+    //Q10. search a value in the linked list
     searchValue(value) {
         if (!this.head) return false
         let cur = this.head
@@ -135,6 +146,7 @@ class singlyLinkedList {
         return cur || null
 
     }
+    //Q11. find sum of all element in a linked list
     sum() {
         if (!this.head) return 0
         let sum = 0
@@ -144,6 +156,7 @@ class singlyLinkedList {
             cur = cur.next
         } return sum
     }
+    //Q12. return the frequency of a value
     freqOfValue(val) {
         let cur = this.head
         let freq = 0
@@ -154,6 +167,7 @@ class singlyLinkedList {
             cur = cur.next
         } return freq
     }
+    //Q13. Remove a element from the back n=(element position)
     removeNFromEnd(n) {
         if (!this.head) return false
         if (n <= 0) return false
@@ -184,42 +198,26 @@ class singlyLinkedList {
         }
         return true
     }
-    lastOcccurenceVal(val, num) {
+ //replace the last occurrence of val with num in a linked list.
+    lastOccurrenceVal(val, num) {
         if (!this.head) return false
 
-        let cur = this.head;
-        let prev = null
-        let target = null;
-        if (this.head.value === val) {
-            target = this.head
-        }
-        while (cur.next) {
-            if (val === cur.next.value) {
-                target = cur.next
-                prev = cur
+        let cur = this.head
+        let target = null
+
+        while (cur) {
+            if (cur.value === val) {
+                target = cur
             }
             cur = cur.next
         }
 
         if (!target) return false
-        let node = new Node(num)
-        if (!prev) {
-            node.next = this.head.next
-            this.head = node
-            return
-        }
 
-        if (prev.next === this.tail) {
-            prev.next = node
-            this.tail = node
-            node.next = null
-            return
-        }
-
-        node.next = prev.next.next
-        prev.next = node
+        target.value = num
         return true
     }
+    //merge two linked list into on
     mixTwoList(list1, list2) {
         if (!list1) return list2;
         if (!list2) return list1;
@@ -233,7 +231,7 @@ class singlyLinkedList {
 
             if (!next1) {
                 list1.tail = list2.tail || cur2
-                return list1
+                break
             }
 
             cur2.next = next1
@@ -241,14 +239,10 @@ class singlyLinkedList {
             cur1 = next1
             cur2 = next2
         }
-        // if(cur2){
-        //     list1.tail.next =  cur2
-        //     list1.tail = list2.tail
-        // }
-
 
         return list1
     }
+    //Remove Duplicate from a sorted linked list
     removeDuplicate(){
         if(!this.head) return null
         let cur = this.head

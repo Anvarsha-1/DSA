@@ -31,8 +31,8 @@ class LinkedList {
         let fast = this.head;
 
         while (fast && fast.next) {
-            let slow = slow.next
-            let fast = fast.next.next
+             slow = slow.next
+             fast = fast.next.next
         }
         return slow.value
     }

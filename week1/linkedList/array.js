@@ -1,3 +1,5 @@
+
+
 class Node {
     constructor(value) {
         this.value = value
@@ -20,7 +22,8 @@ class LinkedList {
             node.next = this.head
             this.head = node
         }
-    } convertToArray() {
+    } 
+    convertToArray() {
         let arr = []
         let cur = this.head
         while (cur) {
