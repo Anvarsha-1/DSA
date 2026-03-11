@@ -82,7 +82,7 @@ class LinkedList {
         let cur = this.head
         while(cur.next!==this.tail){
            cur = cur.next
-        }console.log(cur)
+        }
         this.tail = cur
         cur.next = cur.next.next 
         return true
@@ -126,7 +126,7 @@ class LinkedList {
        return false
 
     }
-    //delete a value for the node
+    //delete a specific node from linked list
     deleteValue(val){
       if(!this.head)return
       if(!val)return null
@@ -188,6 +188,37 @@ class LinkedList {
         cur = cur.next
     }return [...duplicate]
    }
+
+   //remove duplicate from a sorted list
+   removeDuplicate(){
+    if(!this.head)return false
+    let cur = this.head
+    while(cur && cur.next){
+       if(cur.value===cur.next.value){
+        cur.next = cur.next.next
+        continue
+       }cur = cur.next
+    }this.tail = cur
+    return true
+   }
+
+   //remove duplicate from a unsorted list
+   removeDupSorted(){
+    if(!this.head)return false
+    let seen = new Set()
+    let cur = this.head
+    let prev = null
+    while(cur){
+      if(seen.has(cur.value)){
+        prev.next = cur.next
+      }else{
+        seen.add(cur.value)
+        prev = cur
+      }
+      cur = cur.next
+    }return true
+   }
+
    mergeTwoLinkedList(list1,list2){
     if(!list1.head) return list2
     if(!list2.head) return list1
@@ -198,7 +229,7 @@ class LinkedList {
     while(cur1 && cur2){
         let next1 = cur1.next
         let next2 = cur2.next
-
+        
         cur1.next = cur2
 
         if(!next1){
@@ -212,7 +243,7 @@ class LinkedList {
     }
     list2.head= null
     list2.tail = null
-
+    list2.size = 0
     return list1
 
    }
@@ -237,19 +268,16 @@ let list2 = new LinkedList()
 
 
 list1.unshift(10)
+list1.unshift(10)
 list1.unshift(20)
 list1.unshift(30)
 list1.unshift(40)
 list1.unshift(50)
+list1.unshift(50)
+list1.unshift(50)
+list1.unshift(10)
 
-list2.unshift(60)
-list2.unshift(70)
-list2.unshift(80)
-list2.unshift(90)
-list2.unshift(100)
-
-
-console.log(list1.mergeTwoLinkedList(list1,list2))
+console.log(list1.removeDupSorted())
 
 list1.print()
 
