@@ -146,7 +146,7 @@ class singlyLinkedList {
         return cur || null
 
     }
-    //Q11. find sum of all element in a linked list
+    //Q11. find sum of all element in a linkedList
     sum() {
         if (!this.head) return 0
         let sum = 0
@@ -167,7 +167,7 @@ class singlyLinkedList {
             cur = cur.next
         } return freq
     }
-    //Q13. Remove a element from the back n=(element position)
+    //Q13. Remove a element from  back n=(element position)
     removeNFromEnd(n) {
         if (!this.head) return false
         if (n <= 0) return false
@@ -217,7 +217,7 @@ class singlyLinkedList {
         target.value = num
         return true
     }
-    //merge two linked list into on
+    //merge two linked list into one
     mixTwoList(list1, list2) {
         if (!list1) return list2;
         if (!list2) return list1;
