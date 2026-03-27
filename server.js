@@ -1,14 +1,24 @@
-let str = "arun tis in 13th week"
+const express = require("express")
 
-let arr = str.split(" ")
-let largest  = 0
-let second = 0
-for(let i=0;i<arr.length;i++){
-    if(largest<arr[i].length){
-        second = largest
-        largest = arr[i]
-    }else if(second!==largest && arr[i].length>second){
-        second =  arr[i]
-    }
-}
-console.log(second)
+const app = express()
+const routers = express.Router()
+
+
+
+
+
+app.use("/",(req,res,next)=>{
+    res.send("home page")
+    next()
+})
+
+routers.get('/about', (req, res, next) => {
+    res.send("about page")
+})
+
+app.use("/user",routers)
+
+
+app.listen(3000,()=>{
+    console.log("server running")
+})

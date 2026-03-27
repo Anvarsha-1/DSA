@@ -12,3 +12,5 @@ function insertionSort(arr) {
 }
 
 console.log(insertionSort(arr))
+
+

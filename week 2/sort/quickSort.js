@@ -3,7 +3,7 @@ function quickSort(arr, left = 0, right = arr.length - 1) {
     let pivot = arr[right];
 
     let i = left
-    for (let j = left; j < arr.length - 1; j++) {
+    for (let j = left; j < right; j++) {
         if (arr[j] < pivot) {
             [arr[i], arr[j]] = [arr[j], arr[i]]
             i++

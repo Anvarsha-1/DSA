@@ -160,7 +160,7 @@ class LinkedList {
       }
      return fast!==null ? slow.value : null
     }
-    //find duplicate in sorted linkedList
+    // find duplicate in sorted linkedList
    findDuplicate(){
     if(!this.head)return false
     let cur = this.head
