@@ -51,6 +51,54 @@ class Graph{
                 count++
             }
         }return count
+    } 
+    dfsForDisconnect() {
+        let visited = new Set()
+        let result = []
+
+        const Traversal = (vertex) => {
+            visited.add(vertex)
+            result.push(vertex)
+
+            for (let nei of this.adjList[vertex]) {
+                if (!visited.has(vertex)) {
+                    Traversal(nei)
+                }
+            }
+        }
+
+        for (let vertex in this.adjList) {
+            if (!visited.has(vertex)) {
+                Traversal(vertex)
+            }
+        }
+        return result
+
+    }
+    bfsForDisconnected() {
+        let visited = new Set()
+        let result = []
+
+        for (let vertex in this.adjList) {
+            if (!visited.has(vertex)) {
+                this.helperBfs(visited, vertex, result)
+            }
+        } return result
+    }
+    helperBfs(visited, vertex, result) {
+        let queue = [vertex]
+        result.push(vertex)
+        visited.add(vertex)
+        while (queue.length) {
+            let cur = queue.shift()
+            for (let nei of this.adjList[cur]) {
+                if (!visited.has(nei)) {
+                    visited.add(nei)
+                    result.push(nei)
+                    queue.push(nei)
+                }
+            }
+        }
     }
     
     shortestPath(start,target){

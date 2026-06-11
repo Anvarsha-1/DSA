@@ -19,7 +19,8 @@ function mergeSort(arr){
         res.push(right[j])
         j++
     }
-   }return res.concat(left.splice(i),right.splice(j))
+   }
+   return res.concat(left.splice(i),right.splice(j))
 
 }
 

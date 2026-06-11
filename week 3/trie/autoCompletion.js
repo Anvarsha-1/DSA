@@ -35,22 +35,51 @@ class Trie{
         let node = this.root
 
         for(let char of prefix){
-            if(!node.children[char])return []
+            if(!node.children[char]) return []
+
             node = node.children[char]
         }
+
         let result = []
 
-        const dfs =(currNode,path)=>{
-            if(currNode.isEnd){
+        const dfs =((path,curNode)=>{
+            if(curNode.isEnd){
                 result.push(path)
             }
-
-            for(let char in currNode.children){
-                dfs(currNode.children[char],path+char)
+            for(let char in curNode.children){
+                dfs(path+char,curNode.children[char])
             }
-        }
-        dfs(node, prefix)
+        })
+        dfs(prefix,node)
         return result
+    }
+    remove(word){
+        const dfs = ((node,depth)=>{
+
+            if(depth===word.length){
+                if(!node.isEnd) return false
+
+                node.isEnd = false
+                
+                return Object.keys(node.children).length===0
+            }
+
+            let char = word[depth]
+            let child = node.children[char]
+            if(!child) return false
+
+            let shouldDelete =  dfs(child,depth+1)
+
+            if(shouldDelete){
+                delete node.children[char]
+            }
+
+            return (
+                !node.isEnd &&
+                Object.keys(node.children).length===0
+            )
+        })
+       return  dfs(this.root,0)
     }
 }
 
@@ -61,7 +90,8 @@ trie.insert("car")
 trie.insert("cart")
 trie.insert("card")
 trie.insert("coffee")
+trie.insert("Hello")
 
 // console.dir(trie,{depth:null})
 
-console.log(trie.autoComplete("ca"))
+console.log(trie.remove("co"))

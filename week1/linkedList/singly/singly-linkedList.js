@@ -49,7 +49,7 @@ class singlyLinkedList {
         this.head = prev
         return this
     }
-    //Q4. Insert a value at given position function(position of the value to be inserted ,value)
+    //Q4. Insert a value at given position || function(position of the value to be inserted ,value)
     insertAtPosition(pos, value) {
         if (!this.head) return
         let node = new Node(value)
@@ -167,7 +167,7 @@ class singlyLinkedList {
             cur = cur.next
         } return freq
     }
-    //Q13. Remove a element from  back n=(element position)
+    //Q13. Remove a element from  back n=(element position from back)
     removeNFromEnd(n) {
         if (!this.head) return false
         if (n <= 0) return false
@@ -218,29 +218,63 @@ class singlyLinkedList {
         return true
     }
     //merge two linked list into one
-    mixTwoList(list1, list2) {
-        if (!list1) return list2;
-        if (!list2) return list1;
-        let cur1 = list1.head
-        let cur2 = list2.head
-        while (cur1 && cur2) {
-            let next1 = cur1.next
-            let next2 = cur2.next
+    mergeList(l1, l2) {
+        let dummy = new Node(0)
+        let tail = dummy
 
-            cur1.next = cur2
-
-            if (!next1) {
-                list1.tail = list2.tail || cur2
-                break
+        while (l1 && l2) {
+            if (l1.val < l2.val) {
+                tail.next = l1
+                l1 = l1.next
+            } else {
+                tail.next = l2
+                l2 = l2.next
             }
-
-            cur2.next = next1
-
-            cur1 = next1
-            cur2 = next2
+            tail = tail.next
+        }
+        tail.next = l1 || l2
+        return dummy.next
+    }
+    //sort linked list using (mergeSort)
+    sortList(head = this.head) {
+        if (!head || !head.next) {
+            return head
         }
 
-        return list1
+        let slow = head
+        let fast = head
+        let prev = null
+
+        while (fast && fast.next) {
+            prev = slow
+            fast = fast.next.next
+            slow = slow.next
+        }
+
+        prev.next = null
+
+        let left = this.sortList(head)
+        let right = this.sortList(slow)
+
+        return this.head = this.mergeList(left, right)
+    }
+
+    mergeList(l1, l2) {
+        let dummy = new Node(0)
+        let tail = dummy
+
+        while (l1 && l2) {
+            if (l1.val < l2.val) {
+                tail.next = l1
+                l1 = l1.next
+            } else {
+                tail.next = l2
+                l2 = l2.next
+            }
+            tail = tail.next
+        }
+        tail.next = l1 || l2
+        return dummy.next
     }
     //Remove Duplicate from a sorted linked list
     removeDuplicate(){

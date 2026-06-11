@@ -17,6 +17,8 @@ function quickSort(arr, left = 0, right = arr.length - 1) {
     return arr
 }
 
-let arr = [3,4,6,8,1,39,2]
+let arr = [3,4,6,8,1,39,5]
+[3, 4, 6, 8, 1, 39, 5]
+
 
 console.log("OUTPUT",quickSort(arr))

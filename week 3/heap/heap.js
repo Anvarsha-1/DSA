@@ -39,6 +39,18 @@ class Heap{
 
         return min
     }
+    deleteKey(i){
+     this.increaseKey(i,-Infinity)
+     this.remove()
+    }
+    increaseKey(i,value){
+      this.arr[i] = value
+      while(i!==0 && this.arr[i] < this.arr[this.parent(i)]){
+          let p = this.arr[this.parent(i)]
+          [arr[i],p] = [p,arr[i]]
+          i = this.parent(i)
+      }
+    }
 
     bubbleDown(i){
        let length = this.heap.length
@@ -75,5 +87,5 @@ heap.insert(5)
 heap.insert(2)
 heap.insert(41)
 heap.insert(12)
-
+heap.remove(10)
 heap.print()

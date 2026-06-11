@@ -14,4 +14,4 @@ function BinarySearch(array,target,left=0,right=array.length-1){
     }
 }
 
-console.log(BinarySearch(array,7))
+console.log(BinarySearch(array,7)) 
